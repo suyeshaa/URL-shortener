@@ -116,32 +116,10 @@ delBtn.addEventListener("click", () => {
   delBtn.style.display = "none";
 });
 
-function show(link) {
-  fetch("https://api.rebrandly.com/v1/links", {
-    body: `{"destination": "${link}","domain":{"fullName":"rebrand.ly"}}`,
-    headers: {
-      Apikey: KEY,
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-  }).then((res) => {
-    res.json;
-  });
+document.querySelector(".ham").addEventListener("click", () => {
+  document.querySelector(".modal").style.display = "block";
+});
 
-  let data = await res.json();
-  console.log(data);
-  if (data.code === "InvalidFormat") {
-    error();
-  } else {
-    short = data.shortUrl;
-    origLinks.push(inputField.value);
-    newLinks.push(short);
-
-    storeItems();
-
-    // console.log(newLinks);
-    // console.log(origLinks);
-    weblink(short, inputField.value);
-    inputField.value = "";
-  }
-}
+document.querySelector(".modal").addEventListener("click", () => {
+  document.querySelector(".modal").style.display = "none";
+});
