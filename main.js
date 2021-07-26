@@ -10,10 +10,6 @@ var short;
 var origLinks = [];
 var newLinks = [];
 
-// if (localStorage.getItem("original") != null) {
-//   storeItems();
-// }
-
 async function show(link) {
   const res = await fetch("https://api.rebrandly.com/v1/links", {
     body: `{"destination": "${link}","domain":{"fullName":"rebrand.ly"}}`,
@@ -25,7 +21,7 @@ async function show(link) {
   });
 
   let data = await res.json();
-  console.log(data);
+
   if (data.code === "InvalidFormat") {
     error();
   } else {
@@ -64,8 +60,13 @@ saveBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (e) => {
-  console.log(e);
   if (e.target.className == "btn short-btn") {
+    console.log(document.querySelectorAll(".dissect2"));
+    document.querySelectorAll(".dissect2").forEach((el) => {
+      console.log(el.children[1].children[1].textContent);
+      el.children[1].children[1].textContent = "Copy";
+      el.children[1].children[1].style.backgroundColor = "hsl(180, 66%, 49%)";
+    });
     e.target.textContent = "Copied!";
     e.target.style.backgroundColor = " hsl(257, 27%, 26%)";
     let div = e.target.previousElementSibling;
